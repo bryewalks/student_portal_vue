@@ -50,6 +50,7 @@ export default {
   data: function() {
     return {
       experience: { 
+                student_id: "",
                 start_date: "",
                 end_date: "",
                 job_title: "",
@@ -63,6 +64,7 @@ export default {
     //   this.experiences = response.data;
     // });
       this.experience = {
+                        student_id: "1",
                         start_date: "01/02/03",
                         end_date: "01/03/03",
                         job_title: "driver",
@@ -79,9 +81,10 @@ export default {
                     company_name: this.experience.company_name,
                     details: this.experience.details
                     };
-      axios.patch("/api/educations/" + this.experience.id, params)
+                    
+      axios.patch("/api/experiences/" + this.experience.id, params)
         .then(response => {
-          this.$router.push("/educations/" + this.education.id);
+          this.$router.push("/students/" + this.experience.student_id);
         }).catch(error => {
           this.errors = error.response.data.errors;
         });
