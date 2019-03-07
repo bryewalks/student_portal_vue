@@ -81,6 +81,7 @@ export default {
                     company_name: this.experience.company_name,
                     details: this.experience.details
                     };
+                    
       axios.patch("/api/experiences/" + this.experience.id, params)
         .then(response => {
           this.$router.push("/students/" + this.experience.student_id);
