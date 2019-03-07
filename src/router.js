@@ -3,7 +3,8 @@ import Router from 'vue-router'
 import Login from './views/Login.vue'
 import Logout from './views/Logout.vue'
 import StudentPortal from './views/StudentPortal.vue'
-import ResumesEdit from './views/ResumesEdit.vue'
+import StudentsEdit from './views/StudentsEdit.vue'
+import ExperiencesEdit from './views/ExperiencesEdit.vue'
 
 Vue.use(Router)
 
@@ -14,6 +15,7 @@ export default new Router({
     { path: '/', name: 'home', component: Login },
     { path: '/logout', name: 'logout', component: Logout },
     { path: '/studentportal', name: 'student-portal', component: StudentPortal },
-    { path: '/resumes/:id/edit', name: 'resumes-edit', component: ResumesEdit }
+    { path: '/students/:id/edit', name: 'students-edit', component: StudentsEdit },
+    { path: '/experiences/:id/edit', name: 'experiences-edit', component: ExperiencesEdit }
   ]
 })
