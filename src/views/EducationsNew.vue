@@ -63,8 +63,8 @@ export default {
       var params = {
                     start_date: this.education.start_date,
                     end_date: this.education.end_date,
-                    job_title: this.education.job_title,
-                    company_name: this.education.company_name,
+                    degree: this.education.degree,
+                    university_name: this.education.university_name,
                     details: this.education.details
                     };
                     
