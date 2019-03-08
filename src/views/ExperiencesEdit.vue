@@ -37,6 +37,8 @@
         <input type="submit" value="Update Experience" class="btn btn-primary">
       </form>
 
+      <router-link :to=" '/students/' + experience.student_id" class="btn btn-warning">Back</router-link>
+     
     </div>
   </div>
 

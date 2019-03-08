@@ -36,6 +36,8 @@
           <input type="submit" value="Update Education" class="btn btn-primary">
 
       </form>
+
+      <router-link :to=" '/students/' + education.student_id" class="btn btn-warning">Back</router-link>
     </div>
   </div>      
 </template>
