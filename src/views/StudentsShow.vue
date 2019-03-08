@@ -118,12 +118,12 @@
                 <div class="container">
                   <div class="row">
                     <div class="col">
-                      <h2>{{ student.capstone.name }}</h2>
+                     <!--  <h2>{{ student.capstone.name }}</h2>
                       <h4>{{ student.capstone.description }}</h4>
                       <p>URL
                         <a :href="student.capstone.url" target="_blank">{{ student.capstone.url }}</a>
                       </p>
-                      <router-link :to=" '/capstones/' + student.capstone.id + '/edit' " class="btn btn-warning">Edit</router-link>
+                      <router-link :to=" '/capstones/' + student.capstone.id + '/edit' " class="btn btn-warning">Edit</router-link> -->
 
                     </div>
                   </div>
