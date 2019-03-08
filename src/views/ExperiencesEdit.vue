@@ -59,12 +59,12 @@ export default {
                 company_name: "",
                 details: ""
                 },
-      errors []
+      errors: []
     };
   },
   created: function() {
     axios.get("/api/experiences/" + this.$route.params.id).then(response => {
-      this.experiences = response.data;
+      this.experience = response.data;
     });
   },
   methods: {

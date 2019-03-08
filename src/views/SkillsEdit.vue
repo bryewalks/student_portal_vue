@@ -37,8 +37,8 @@ export default {
     };
   },
   created: function() {
-    // axios.get("/api/experiences/" + this.$route.params.id).then(response => {
-    //   this.experiences = response.data;
+    // axios.get("/api/skills/" + this.$route.params.id).then(response => {
+    //   this.skills = response.data;
     // });
       this.skills = {
                     skill: "Can use a steering wheel, a gas pedal, sometimes a brake",
@@ -50,7 +50,7 @@ export default {
       var params = {
                     skill: this.skills.skill
                     };
-      axios.patch("/api/skills/" + this.skill.id, params)
+      axios.patch("/api/skills/" + this.skills.id, params)
         .then(response => {
           this.$router.push("/students/" + this.skill.student_id);
         }).catch(error => {
