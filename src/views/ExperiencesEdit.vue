@@ -58,21 +58,14 @@ export default {
                 job_title: "",
                 company_name: "",
                 details: ""
-                }
+                },
+      errors []
     };
   },
   created: function() {
-    // axios.get("/api/experiences/" + this.$route.params.id).then(response => {
-    //   this.experiences = response.data;
-    // });
-      this.experience = {
-                        student_id: "1",
-                        start_date: "01/02/03",
-                        end_date: "01/03/03",
-                        job_title: "driver",
-                        company_name: "FedEx",
-                        details: "Real good at driving"
-                        };
+    axios.get("/api/experiences/" + this.$route.params.id).then(response => {
+      this.experiences = response.data;
+    });
   },
   methods: {
     submit: function() {

@@ -92,27 +92,14 @@ export default {
                 online_resume_url: "",
                 github_url: "",
                 photo: ""
-                }
+                },
+      errors: []
     };
   },
   created: function() {
-    // axios.get("/api/students/" + this.$route.params.id).then(response => {
-    //   this.student = response.data;
-    // });
-      this.student = {
-                        student_id: "#",
-                        first_name: "Herman",
-                        last_name: "Munster",
-                        email: "bossmunster@gmail.com",
-                        phone_number: "8476577890",
-                        short_bio: "I am monster",
-                        linkedin_url: "www.linkedinurl.com",
-                        twitter_handle: "bossmunster",
-                        personal_blog: "its personal",
-                        online_resume_url: "www.onlineresumeurl.com",
-                        github_url: "www.githuburl.com",
-                        photo: "https://i.ebayimg.com/images/g/wd8AAOxy4kpQ~uGQ/s-l300.jpg"
-                      };
+    axios.get("/api/students/" + this.$route.params.id).then(response => {
+      this.student = response.data;
+    });
   },
   methods: {
     submit: function() {
