@@ -11,29 +11,29 @@
       <form v-on:submit.prevent="submit()">
         <div class="form-group">
           <label>Start Date: </label>
-          <input class='form-control' type='text' v-model="education.start_date" placeholder="ex: ">
+          <input class='form-control' type='text' v-model="education.start_date" placeholder="ex: 01/02/03">
         </div>
 
         <div class="form-group">
           <label>End Date: </label>
-          <input class='form-control' type='text' v-model="education.end_date" placeholder="ex: ">
+          <input class='form-control' type='text' v-model="education.end_date" placeholder="ex: 01/02/07">
         </div>
 
         <div class="form-group">
           <label>Degree: </label>
-          <input class='form-control' type='text' v-model="education.degree" placeholder="ex: ">
+          <input class='form-control' type='text' v-model="education.degree" placeholder="ex: CS">
         </div>
         
         <div class="form-group">
           <label>University Name: </label>
-          <input class='form-control' type='text' v-model="education.university_name" placeholder="ex: ">
+          <input class='form-control' type='text' v-model="education.university_name" placeholder="ex: MIT">
         </div>
         
         <div class="form-group">
           <label>Details: </label>
-          <input class='form-control' type='text' v-model="education.details" placeholder="ex: ">
+          <input class='form-control' type='text' v-model="education.details" placeholder="ex: Engineered lots of engineering">
         </div>
-          <input type="submit" value="Update Education" class="btn btn-primary">
+          <input type="submit" value="Add new Education" class="btn btn-primary">
 
       </form>
     </div>
@@ -53,23 +53,11 @@ export default {
                 degree: "",
                 university_name: "",
                 details: ""
-                }
+                },
+      errors: []
     };
   },
-  created: function() {
-    // axios.get("/api/educations/" + this.$route.params.id).then(response => {
-    //   this.experiences = response.data;
-    // });
-      this.education = {
-                        student_id: "1",
-                        start_date: "01/02/03",
-                        end_date: "01/02/07",
-                        degree: "CS",
-                        university_name: "phenix",
-                        details: "tbd"
-                        
-                        };
-  },
+  created: function() {},
   methods: {
     submit: function() {
       var params = {
@@ -80,9 +68,9 @@ export default {
                     details: this.education.details
                     };
                     
-      axios.patch("/api/educations/" + this.education.id, params)
+      axios.post("/api/educations/", params)
         .then(response => {
-          this.$router.push("/students/" + this.education.student_id);
+          this.$router.push("/students/" + response.data.id);
         }).catch(error => {
           this.errors = error.response.data.errors;
         });
