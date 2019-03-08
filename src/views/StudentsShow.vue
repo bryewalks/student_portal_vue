@@ -45,7 +45,7 @@
                       <h4>Start Date: {{ experience.start_date }}</h4>
                       <h4>End Date: {{ experience.end_date }}</h4>
                       <router-link :to=" '/experiences/' + experience.id + '/edit' " class="btn btn-warning">Edit</router-link>
-                      <button v-on:click="destroyExperience()">Delete</button>
+                      <button v-on:click="destroyExperience(experience)">Delete</button>
 
                     </div>
                   </div>
@@ -73,7 +73,7 @@
                       <h4>Start Date: {{ education.start_date }}</h4>
                       <h4>End Date: {{ education.end_date }}</h4>
                       <router-link :to=" '/educations/' + education.id + '/edit' " class="btn btn-warning">Edit</router-link>
-                      <button v-on:click="destroyEducation()">Delete</button>
+                      <button v-on:click="destroyEducation(education)">Delete</button>
 
                     </div>
                   </div>
@@ -98,7 +98,7 @@
                     <div v-for="skill in student.skills" class="col">
                       <h3>{{ skill.skill }}</h3>
                       <router-link :to=" '/skills/' + skill.id + '/edit' " class="btn btn-warning">Edit</router-link>
-                      <button v-on:click="destroySkill()">Delete</button>
+                      <button v-on:click="destroySkill(skill)">Delete</button>
                     </div>
                   </div>
                 </div>
@@ -169,7 +169,7 @@
                               details: ""
                             }
                             ],
-                education: [
+                educations: [
                             {
                               id: "",
                               student_id: "",
@@ -204,25 +204,26 @@
             });
     },
     methods: {
-      destroySkill: function() {
-        axios.delete("/api/skills/" + this.skill.id)
+      destroySkill: function(inputSkill) {
+        axios.delete("/api/skills/" + inputSkill.id)
           .then(response => {
             console.log("Success" ,response.data);
-            // this.$router.push("/");
+            this.$router.push("/studentsportal");
           });
       },
-      destroyEducation: function() {
-        axios.delete("/api/education/" + this.education.id)
+      destroyEducation: function(inputEducation) {
+        axios.delete("/api/educations/" + inputEducation.id)
           .then(response => {
             console.log("Success" ,response.data);
-            // this.$router.push("/");
+            this.$router.push("/studentsportal");
           });
       },
-      destroyExperience: function() {
-        axios.delete("/api/experiences/" + this.experience.id)
+      destroyExperience: function(inputExperience) {
+            console.log(inputExperience.id);
+        axios.delete("/api/experiences/" + inputExperience.id)
           .then(response => {
             console.log("Success" ,response.data);
-            // this.$router.push("/");
+            this.$router.push("/studentsportal");
           });
       }
     }
