@@ -32,8 +32,7 @@ export default {
   data: function() {
     return {
       skills: { 
-                skill: "",
-                student_id: ""
+                skill: ""
                 }
     };
   },
@@ -49,7 +48,7 @@ export default {
   methods: {
     submit: function() {
       var params = {
-                    details: this.skills.skill
+                    skill: this.skills.skill
                     };
       axios.patch("/api/skills/" + this.skill.id, params)
         .then(response => {
