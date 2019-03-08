@@ -10,6 +10,7 @@ import SkillsNew from './views/SkillsNew.vue'
 import EducationsEdit from './views/EducationsEdit.vue'
 import ExperiencesNew from './views/ExperiencesNew.vue'
 import EducationsNew from './views/EducationsNew.vue'
+import StudentsPortal from './views/StudentsPortal.vue'
 
 
 Vue.use(Router)
@@ -20,12 +21,17 @@ export default new Router({
   routes: [
     { path: '/', name: 'home', component: Login },
     { path: '/logout', name: 'logout', component: Logout },
+    
     { path: '/students/:id', name: 'students-show', component: StudentsShow },
     { path: '/students/:id/edit', name: 'students-edit', component: StudentsEdit },
+    { path: '/studentsportal', name: 'students-portal', component: StudentsPortal },
+
     { path: '/skills/:id/edit', name: 'skills-edit', component: SkillsEdit },
     { path: '/skills/new', name: 'skills-new', component: SkillsNew },
+
     { path: '/experiences/new', name: 'experiences-new', component: ExperiencesNew },
     { path: '/experiences/:id/edit', name: 'experiences-edit', component: ExperiencesEdit },
+
     { path: '/educations/new', name: 'educations-new', component: EducationsNew },
     { path: '/educations/:id/edit', name: 'educations-edit', component: EducationsEdit }
   ]
