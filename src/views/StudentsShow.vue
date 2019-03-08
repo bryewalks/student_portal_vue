@@ -66,7 +66,7 @@
                 <router-link :to=" '/educations/new' " class="btn btn-success">New</router-link>
                 <div class="container">
                   <div class="row">
-                    <div v-for="education in student.education" class="col">
+                    <div v-for="education in student.educations" class="col">
                       <h2>{{ education.university_name }}</h2>
                       <h4>{{ education.degree }}</h4>
                       <h4>{{ education.details }}</h4>

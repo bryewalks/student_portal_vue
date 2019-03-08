@@ -11,33 +11,33 @@
       <form v-on:submit.prevent="submit()">
         <div class="form-group">
           <label>Start Date: </label>
-          <input class='form-control' type='date' v-model="education.start_date">
+          <input class='form-control' type='date' v-model="educations.start_date">
         </div>
 
         <div class="form-group">
           <label>End Date: </label>
-          <input class='form-control' type='date' v-model="education.end_date">
+          <input class='form-control' type='date' v-model="educations.end_date">
         </div>
 
         <div class="form-group">
           <label>Degree: </label>
-          <input class='form-control' type='text' v-model="education.degree">
+          <input class='form-control' type='text' v-model="educations.degree">
         </div>
         
         <div class="form-group">
           <label>University Name: </label>
-          <input class='form-control' type='text' v-model="education.university_name">
+          <input class='form-control' type='text' v-model="educations.university_name">
         </div>
         
         <div class="form-group">
           <label>Details: </label>
-          <input class='form-control' type='text' v-model="education.details">
+          <input class='form-control' type='text' v-model="educations.details">
         </div>
           <input type="submit" value="Update Education" class="btn btn-primary">
 
       </form>
 
-      <router-link :to=" '/students/' + education.student_id" class="btn btn-warning">Back</router-link>
+      <router-link :to=" '/students/' + educations.student_id" class="btn btn-warning">Back</router-link>
     </div>
   </div>      
 </template>
@@ -48,7 +48,7 @@ import axios from "axios";
 export default {
   data: function() {
     return {
-      education: { 
+      educations: { 
                 student_id: "",
                 start_date: "",
                 end_date: "",
@@ -61,22 +61,22 @@ export default {
   },
   created: function() {
     axios.get("/api/educations/" + this.$route.params.id).then(response => {
-      this.experiences = response.data;
+      this.educations = response.data;
     });
   },
   methods: {
     submit: function() {
       var params = {
-                    start_date: this.education.start_date,
-                    end_date: this.education.end_date,
-                    job_title: this.education.job_title,
-                    company_name: this.education.company_name,
-                    details: this.education.details
+                    start_date: this.educations.start_date,
+                    end_date: this.educations.end_date,
+                    degree: this.educations.degree,
+                    university_name: this.educations.university_name,
+                    details: this.educations.details
                     };
                     
-      axios.patch("/api/educations/" + this.education.id, params)
+      axios.patch("/api/educations/" + this.educations.id, params)
         .then(response => {
-          this.$router.push("/students/" + this.education.student_id);
+          this.$router.push("/students/" + this.educations.student_id);
         }).catch(error => {
           this.errors = error.response.data.errors;
         });
