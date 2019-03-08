@@ -3,7 +3,6 @@
     <div>
       <h1>{{ student.first_name + ' ' + student.last_name }}</h1>
       <img v-bind:src=" student.photo " :alt="student.student_id">
-      <p>Id: {{ student.id }}</p>
       <p>Email: {{ student.email }}</p>
       <p>Phone Number: {{ student.phone_number }}</p>
       <p>Bio: {{ student.short_bio }}</p>
@@ -42,8 +41,8 @@
                       <h3>{{ experience.company_name }}</h3>
                       <h4>{{ experience.job_title }}</h4>
                       <h4>{{ experience.details }}</h4>
-                      <h4>{{ experience.start_date }}</h4>
-                      <h4>{{ experience.end_date }}</h4>
+                      <h4>Start Date: {{ experience.start_date }}</h4>
+                      <h4>End Date: {{ experience.end_date }}</h4>
                       <router-link :to=" '/experiences/' + experience.id + '/edit' " class="btn btn-warning">Edit</router-link>
                     </div>
                   </div>
@@ -64,11 +63,11 @@
                 <div class="container">
                   <div class="row">
                     <div v-for="education in student.education" class="col">
-                      <h3>{{ education.university_name }}</h3>
+                      <h2>{{ education.university_name }}</h2>
                       <h4>{{ education.degree }}</h4>
                       <h4>{{ education.details }}</h4>
-                      <h4>{{ education.start_date }}</h4>
-                      <h4>{{ education.end_date }}</h4>
+                      <h4>Start Date: {{ education.start_date }}</h4>
+                      <h4>End Date: {{ education.end_date }}</h4>
                       <router-link :to=" '/educations/' + education.id + '/edit' " class="btn btn-warning">Edit</router-link>
 
                     </div>
@@ -113,7 +112,11 @@
                 <div class="container">
                   <div class="row">
                     <div class="col">
-                      <h3>{{ student.capstone.name }}</h3>
+                      <h2>{{ student.capstone.name }}</h2>
+                      <h4>{{ student.capstone.description }}</h4>
+                      <p>URL
+                        <a :href="student.capstone.url" target="_blank">{{ student.capstone.url }}</a>
+                      </p>
                       <!-- <router-link :to=" '/skills/' + skill.id + '/edit' " class="btn btn-warning">Edit</router-link> -->
 
                     </div>
