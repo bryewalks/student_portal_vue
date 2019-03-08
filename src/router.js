@@ -9,6 +9,7 @@ import SkillsEdit from './views/SkillsEdit.vue'
 import EducationsEdit from './views/EducationsEdit.vue'
 import ExperiencesNew from './views/ExperiencesNew.vue'
 import EducationsNew from './views/EducationsNew.vue'
+import StudentsPortal from './views/StudentsPortal.vue'
 
 
 Vue.use(Router)
@@ -21,6 +22,7 @@ export default new Router({
     { path: '/logout', name: 'logout', component: Logout },
     { path: '/students/:id', name: 'students-show', component: StudentsShow },
     { path: '/students/:id/edit', name: 'students-edit', component: StudentsEdit },
+    { path: '/studentsportal', name: 'students-portal', component: StudentsPortal },
 
     { path: '/skills/:id/edit', name: 'skills-edit', component: SkillsEdit },
     { path: '/experiences/new', name: 'experiences-new', component: ExperiencesNew },
