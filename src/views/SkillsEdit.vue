@@ -33,26 +33,23 @@ export default {
     return {
       skills: { 
                 skill: ""
-                }
+                },
+      errors: []
     };
   },
   created: function() {
-    // axios.get("/api/experiences/" + this.$route.params.id).then(response => {
-    //   this.experiences = response.data;
-    // });
-      this.skills = {
-                    skill: "Can use a steering wheel, a gas pedal, sometimes a brake",
-                    student_id: "1"
-                    };
+    axios.get("/api/skills/" + this.$route.params.id).then(response => {
+      this.skills = response.data;
+    });
   },
   methods: {
     submit: function() {
       var params = {
                     skill: this.skills.skill
                     };
-      axios.patch("/api/skills/" + this.skill.id, params)
+      axios.patch("/api/skills/" + this.skills.id, params)
         .then(response => {
-          this.$router.push("/students/" + this.skill.student_id);
+          this.$router.push("/students/" + response.data.student_id);
         }).catch(error => {
           this.errors = error.response.data.errors;
         });
