@@ -17,6 +17,8 @@
         <input type="submit" value="Update Skill" class="btn btn-primary">
       </form>
 
+      <router-link :to=" '/students/' + skills.student_id" class="btn btn-warning">Back</router-link>
+
     </div>
   </div>
 
