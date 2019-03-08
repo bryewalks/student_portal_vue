@@ -9,7 +9,7 @@ if (jwt) {
 }
 
 axios.defaults.baseURL = 
-  process.env.NODE_ENV === "development" ? "https://kill-nil.herokuapp.com" : "/";
+  process.env.NODE_ENV === "development" ? "https://kill-nil.herokuapp.com" : "https://kill-nil.herokuapp.com";
 
 Vue.config.productionTip = false
 
