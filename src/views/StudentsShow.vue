@@ -6,7 +6,7 @@
       <p>Email: {{ student.email }}</p>
       <p>Phone Number: {{ student.phone_number }}</p>
       <p>Bio: {{ student.short_bio }}</p>
-      <p>Capstone: {{ student.capstone.name }}</p>
+      <!-- <p>Capstone: {{ student.capstone.name }}</p> -->
       <p>Twitter:
         <a :href="'https://twitter.com/' + student.twitter_handle" target="_blank">{{ student.twitter_handle }}</a>
       </p>
@@ -35,6 +35,7 @@
 
             <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
               <div class="card-body">
+                <router-link :to=" '/experiences/new' " class="btn btn-success">New</router-link>
                 <div class="container">
                   <div class="row">
                     <div v-for="experience in student.experiences" class="col">
@@ -44,6 +45,7 @@
                       <h4>Start Date: {{ experience.start_date }}</h4>
                       <h4>End Date: {{ experience.end_date }}</h4>
                       <router-link :to=" '/experiences/' + experience.id + '/edit' " class="btn btn-warning">Edit</router-link>
+
                     </div>
                   </div>
                 </div>
@@ -60,6 +62,7 @@
             </div>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
               <div class="card-body">
+                <router-link :to=" '/educations/new' " class="btn btn-success">New</router-link>
                 <div class="container">
                   <div class="row">
                     <div v-for="education in student.education" class="col">
@@ -87,6 +90,7 @@
             </div>
             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
               <div class="card-body">
+                <router-link :to=" '/skills/new' " class="btn btn-success">New</router-link>
                 <div class="container">
                   <div class="row">
                     <div v-for="skill in student.skills" class="col">
@@ -112,10 +116,10 @@
                 <div class="container">
                   <div class="row">
                     <div class="col">
-                      <h2>{{ student.capstone.name }}</h2>
-                      <h4>{{ student.capstone.description }}</h4>
+                      <!-- <h2>{{ student.capstone.name }}</h2> -->
+                      <!-- <h4>{{ student.capstone.description }}</h4> -->
                       <p>URL
-                        <a :href="student.capstone.url" target="_blank">{{ student.capstone.url }}</a>
+                        <!-- <a :href="student.capstone.url" target="_blank">{{ student.capstone.url }}</a> -->
                       </p>
                       <!-- <router-link :to=" '/skills/' + skill.id + '/edit' " class="btn btn-warning">Edit</router-link> -->
 
@@ -134,7 +138,7 @@
   
 </style>
 <script>
-  // var axios = require('axios')
+  var axios = require('axios')
 
   export default {
     data: function() {
@@ -191,88 +195,93 @@
               };
     },
     created: function() {
-      this.student = {
-                        id: "1",
-                        first_name: "Herman",
-                        last_name: "Munster",
-                        email: "bossmunster@gmail.com",
-                        phone_number: "8476577890",
-                        short_bio: "I am monster",
-                        linkedin_url: "https://www.linkedinurl.com",
-                        twitter_handle: "dhh",
-                        personal_blog: "https://reddit.com",
-                        online_resume_url: "https://www.onlineresumeurl.com",
-                        github_url: "https://www.githuburl.com",
-                        photo: "https://i.ebayimg.com/images/g/wd8AAOxy4kpQ~uGQ/s-l300.jpg",
-                        experiences: [
-                                       {
-                                         id: "1",
-                                         student_id: "#",
-                                         start_date: "01/02/03",
-                                         end_date: "01/03/03",
-                                         job_title: "driver",
-                                         company_name: "FedEx",
-                                         details: "Real good at driving"
-                                       },
-                                       {
-                                         id: "2",
-                                         student_id: "#",
-                                         start_date: "01/02/03",
-                                         end_date: "01/03/03",
-                                         job_title: "Pizza Guy",
-                                         company_name: "Big Johns Papa Pizzeria",
-                                         details: "Real fast at driving"
-                                       },
-                                       {
-                                         id: "3",
-                                         student_id: "#",
-                                         start_date: "01/02/03",
-                                         end_date: "01/03/03",
-                                         job_title: "Ambulance Driver",
-                                         company_name: "Atec",
-                                         details: "Real 'ok' at driving"
-                                       }
-                        ],
-                        education:[
-                                    {
-                                      id: "1",
-                                      student_id: "#",
-                                      start_date: "12/31/02",
-                                      end_date: "01/01/03",
-                                      degree: "Bachelors degree in driving",
-                                      university_name: "UoD",
-                                      details: "Learned to Drive"
-                                    },
-                                    {
-                                      id: "2",
-                                      student_id: "#",
-                                      start_date: "12/31/02",
-                                      end_date: "01/01/03",
-                                      degree: "Bachelors degree in kicking ass",
-                                      university_name: "Northern Illinois University",
-                                      details: "Learned to Drive"
-                                    }
-                                    ],
-                        skills: [
-                                    {
-                                      id: "1",
-                                      student_id: "#",
-                                      skill: "Can use a steering wheel, a gas pedal, sometimes a brake"
-                                    },
-                                    {
-                                      id: "2",
-                                      student_id: "#",
-                                      skill: "Chewing bubble gum"
-                                    }
-                        ],
-                        capstone: {
-                                      id: "1",
-                                      student_id: "#",
-                                      name: "MunsterHunter",
-                                      description: "Use to hunt Munsters",
-                                      url: "www.url.com"
-                                    }
-                      }
+          axios.get("/api/students/" + this.$route.params.id)
+            .then(response => {
+              console.log(response.data);
+              this.student = response.data;
+            });
+      // this.student = {
+      //                   id: "1",
+      //                   first_name: "Herman",
+      //                   last_name: "Munster",
+      //                   email: "bossmunster@gmail.com",
+      //                   phone_number: "8476577890",
+      //                   short_bio: "I am monster",
+      //                   linkedin_url: "https://www.linkedinurl.com",
+      //                   twitter_handle: "dhh",
+      //                   personal_blog: "https://reddit.com",
+      //                   online_resume_url: "https://www.onlineresumeurl.com",
+      //                   github_url: "https://www.githuburl.com",
+      //                   photo: "https://i.ebayimg.com/images/g/wd8AAOxy4kpQ~uGQ/s-l300.jpg",
+      //                   experiences: [
+      //                                  {
+      //                                    id: "1",
+      //                                    student_id: "#",
+      //                                    start_date: "01/02/03",
+      //                                    end_date: "01/03/03",
+      //                                    job_title: "driver",
+      //                                    company_name: "FedEx",
+      //                                    details: "Real good at driving"
+      //                                  },
+      //                                  {
+      //                                    id: "2",
+      //                                    student_id: "#",
+      //                                    start_date: "01/02/03",
+      //                                    end_date: "01/03/03",
+      //                                    job_title: "Pizza Guy",
+      //                                    company_name: "Big Johns Papa Pizzeria",
+      //                                    details: "Real fast at driving"
+      //                                  },
+      //                                  {
+      //                                    id: "3",
+      //                                    student_id: "#",
+      //                                    start_date: "01/02/03",
+      //                                    end_date: "01/03/03",
+      //                                    job_title: "Ambulance Driver",
+      //                                    company_name: "Atec",
+      //                                    details: "Real 'ok' at driving"
+      //                                  }
+      //                   ],
+      //                   education:[
+      //                               {
+      //                                 id: "1",
+      //                                 student_id: "#",
+      //                                 start_date: "12/31/02",
+      //                                 end_date: "01/01/03",
+      //                                 degree: "Bachelors degree in driving",
+      //                                 university_name: "UoD",
+      //                                 details: "Learned to Drive"
+      //                               },
+      //                               {
+      //                                 id: "2",
+      //                                 student_id: "#",
+      //                                 start_date: "12/31/02",
+      //                                 end_date: "01/01/03",
+      //                                 degree: "Bachelors degree in kicking ass",
+      //                                 university_name: "Northern Illinois University",
+      //                                 details: "Learned to Drive"
+      //                               }
+      //                               ],
+      //                   skills: [
+      //                               {
+      //                                 id: "1",
+      //                                 student_id: "#",
+      //                                 skill: "Can use a steering wheel, a gas pedal, sometimes a brake"
+      //                               },
+      //                               {
+      //                                 id: "2",
+      //                                 student_id: "#",
+      //                                 skill: "Chewing bubble gum"
+      //                               }
+      //                   ],
+      //                   capstone: {
+      //                                 id: "1",
+      //                                 student_id: "#",
+      //                                 name: "MunsterHunter",
+      //                                 description: "Use to hunt Munsters",
+      //                                 url: "www.url.com"
+      //                               }
+      //                 }
     },
     methods: {}
   };
