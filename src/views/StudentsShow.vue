@@ -8,7 +8,7 @@
       <p>Bio: {{ student.short_bio }}</p>
       <!-- <p>Capstone: {{ student.capstone.name }}</p> -->
       <p>Twitter:
-        <a :href="'https://twitter.com/' + student.twitter_handle" target="_blank">{{ student.twitter_handle }}</a>
+        <a :href="student.twitter_handle" target="_blank">{{ student.twitter_handle }}</a>
       </p>
       <p>GitHub:
         <a :href="student.github_url" target="_blank">{{ student.github_url }}</a>
