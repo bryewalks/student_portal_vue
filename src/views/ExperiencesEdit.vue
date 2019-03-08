@@ -59,7 +59,7 @@ export default {
                 company_name: "",
                 details: ""
                 },
-      errors []
+      errors: []
     };
   },
   created: function() {
