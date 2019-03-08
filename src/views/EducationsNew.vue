@@ -11,12 +11,12 @@
       <form v-on:submit.prevent="submit()">
         <div class="form-group">
           <label>Start Date: </label>
-          <input class='form-control' type='text' v-model="education.start_date" placeholder="ex: 01/02/03">
+          <input class='form-control' type='date' v-model="education.start_date" placeholder="ex: 01/02/03">
         </div>
 
         <div class="form-group">
           <label>End Date: </label>
-          <input class='form-control' type='text' v-model="education.end_date" placeholder="ex: 01/02/07">
+          <input class='form-control' type='date' v-model="education.end_date" placeholder="ex: 01/02/07">
         </div>
 
         <div class="form-group">
