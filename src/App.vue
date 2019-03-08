@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Student Portal</a>
+      <router-link class="navbar-brand" to="/students/:id">Student Portal</router-link>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -20,7 +20,7 @@
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
-          <router-link class="dropdown-item" to="/studentportal">Student Portal</router-link>
+          <router-link class="dropdown-item" to="/students">Student Portal</router-link>
           <router-link class="dropdown-item" to="/">Login</router-link>
           <router-link class="dropdown-item" to="/logout">Logout</router-link>
 
