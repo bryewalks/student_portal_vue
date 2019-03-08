@@ -20,12 +20,12 @@ export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
-    { path: '/', name: 'home', component: Login },
+    { path: '/', name: 'home', component: StudentsPortal },
+    { path: '/login', name: 'login', component: Login },
     { path: '/logout', name: 'logout', component: Logout },
     
     { path: '/students/:id', name: 'students-show', component: StudentsShow },
     { path: '/students/:id/edit', name: 'students-edit', component: StudentsEdit },
-    { path: '/studentsportal', name: 'students-portal', component: StudentsPortal },
 
     { path: '/skills/:id/edit', name: 'skills-edit', component: SkillsEdit },
     { path: '/skills/new', name: 'skills-new', component: SkillsNew },
