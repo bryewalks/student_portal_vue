@@ -208,14 +208,14 @@
         axios.delete("/api/skills/" + inputSkill.id)
           .then(response => {
             console.log("Success" ,response.data);
-            this.$router.push("/studentsportal");
+            this.$router.push("/");
           });
       },
       destroyEducation: function(inputEducation) {
         axios.delete("/api/educations/" + inputEducation.id)
           .then(response => {
             console.log("Success" ,response.data);
-            this.$router.push("/studentsportal");
+            this.$router.push("/");
           });
       },
       destroyExperience: function(inputExperience) {
@@ -223,7 +223,7 @@
         axios.delete("/api/experiences/" + inputExperience.id)
           .then(response => {
             console.log("Success" ,response.data);
-            this.$router.push("/studentsportal");
+            this.$router.push("/");
           });
       }
     }
