@@ -11,6 +11,7 @@ import EducationsEdit from './views/EducationsEdit.vue'
 import ExperiencesNew from './views/ExperiencesNew.vue'
 import EducationsNew from './views/EducationsNew.vue'
 import StudentsPortal from './views/StudentsPortal.vue'
+import CapstonesEdit from './views/CapstonesEdit.vue'
 
 
 Vue.use(Router)
@@ -33,6 +34,8 @@ export default new Router({
     { path: '/experiences/:id/edit', name: 'experiences-edit', component: ExperiencesEdit },
 
     { path: '/educations/new', name: 'educations-new', component: EducationsNew },
-    { path: '/educations/:id/edit', name: 'educations-edit', component: EducationsEdit }
+    { path: '/educations/:id/edit', name: 'educations-edit', component: EducationsEdit },
+
+    { path: '/capstones/:id/edit', name: 'capstones-edit', component: CapstonesEdit }
   ]
 })
