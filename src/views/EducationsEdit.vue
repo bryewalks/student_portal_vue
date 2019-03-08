@@ -55,22 +55,14 @@ export default {
                 degree: "",
                 university_name: "",
                 details: ""
-                }
+                },
+      errors: []
     };
   },
   created: function() {
-    // axios.get("/api/educations/" + this.$route.params.id).then(response => {
-    //   this.experiences = response.data;
-    // });
-      this.education = {
-                        student_id: "1",
-                        start_date: "01/02/03",
-                        end_date: "01/02/07",
-                        degree: "CS",
-                        university_name: "phenix",
-                        details: "tbd"
-                        
-                        };
+    axios.get("/api/educations/" + this.$route.params.id).then(response => {
+      this.experiences = response.data;
+    });
   },
   methods: {
     submit: function() {

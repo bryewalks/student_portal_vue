@@ -73,7 +73,7 @@ export default {
                     
       axios.post("/api/experiences/", params)
         .then(response => {
-          this.$router.push("/students/" + response.data.id);
+          this.$router.push("/students/" + response.data.student_id);
         }).catch(error => {
           this.errors = error.response.data.errors;
         });
