@@ -1,12 +1,14 @@
 <template>
   <div class="students-show">
     <div>
+      <a :href="'/students/' + (student.id - 1)" class="arrow round"><</a>
+      <a :href="'/students/' + (student.id + 1)" class="arrow round">></a>
       <h1>{{ student.first_name + ' ' + student.last_name }}</h1>
       <img v-bind:src=" student.photo " :alt="student.student_id">
       <p>Email: {{ student.email }}</p>
       <p>Phone Number: {{ student.phone_number }}</p>
       <p>Bio: {{ student.short_bio }}</p>
-      <!-- <p>Capstone: {{ student.capstone.name }}</p> -->
+      <p v-if="student.capstone">Capstone: {{ student.capstone.name }}</p>
       <p>Twitter:
         <a :href="student.twitter_handle" target="_blank">{{ student.twitter_handle }}</a>
       </p>
@@ -22,7 +24,7 @@
       <p>Linkedin
         <a :href="student.linkedin_url" target="_blank">{{ student.linkedin_url }}</a>
       </p>
-      <router-link :to=" '/students/' + student.id + '/edit' " class="btn btn-warning">Edit</router-link>
+        <router-link v-if="this.student_id == student.id" :to=" '/students/' + student.id + '/edit' " class="btn btn-warning">Edit</router-link>
         <div id="accordion">
           <div class="card">
             <div class="card-header" id="headingOne">
@@ -35,7 +37,7 @@
 
             <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
               <div class="card-body">
-                <router-link :to=" '/experiences/new' " class="btn btn-success">New</router-link>
+                <router-link v-if="this.student_id == student.id" :to=" '/experiences/new' " class="btn btn-success">New</router-link>
                 <div class="container">
                   <div class="row">
                     <div v-for="experience in student.experiences" class="col">
@@ -44,8 +46,10 @@
                       <h4>{{ experience.details }}</h4>
                       <h4>Start Date: {{ experience.start_date }}</h4>
                       <h4>End Date: {{ experience.end_date }}</h4>
-                      <router-link :to=" '/experiences/' + experience.id + '/edit' " class="btn btn-warning">Edit</router-link>
-                      <button v-on:click="destroyExperience(experience)">Delete</button>
+                      <div v-if="student_id == student.id">
+                        <router-link :to=" '/experiences/' + experience.id + '/edit' " class="btn btn-warning">Edit</router-link>
+                        <button v-on:click="destroyExperience(experience)">Delete</button>
+                      </div>
 
                     </div>
                   </div>
@@ -63,7 +67,7 @@
             </div>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
               <div class="card-body">
-                <router-link :to=" '/educations/new' " class="btn btn-success">New</router-link>
+                <router-link v-if="this.student_id == student.id" :to=" '/educations/new' " class="btn btn-success">New</router-link>
                 <div class="container">
                   <div class="row">
                     <div v-for="education in student.educations" class="col">
@@ -72,8 +76,10 @@
                       <h4>{{ education.details }}</h4>
                       <h4>Start Date: {{ education.start_date }}</h4>
                       <h4>End Date: {{ education.end_date }}</h4>
-                      <router-link :to=" '/educations/' + education.id + '/edit' " class="btn btn-warning">Edit</router-link>
-                      <button v-on:click="destroyEducation(education)">Delete</button>
+                      <div v-if="student_id == student.id">  
+                        <router-link :to=" '/educations/' + education.id + '/edit' " class="btn btn-warning">Edit</router-link>
+                        <button v-on:click="destroyEducation(education)">Delete</button>
+                      </div>
 
                     </div>
                   </div>
@@ -92,13 +98,15 @@
             </div>
             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
               <div class="card-body">
-                <router-link :to=" '/skills/new' " class="btn btn-success">New</router-link>
+                <router-link v-if="this.student_id == student.id" :to=" '/skills/new' " class="btn btn-success">New</router-link>
                 <div class="container">
                   <div class="row">
                     <div v-for="skill in student.skills" class="col">
                       <h3>{{ skill.skill }}</h3>
-                      <router-link :to=" '/skills/' + skill.id + '/edit' " class="btn btn-warning">Edit</router-link>
-                      <button v-on:click="destroySkill(skill)">Delete</button>
+                      <div v-if="student_id == student.id">
+                        <router-link :to=" '/skills/' + skill.id + '/edit' " class="btn btn-warning">Edit</router-link>
+                        <button v-on:click="destroySkill(skill)">Delete</button>     
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -118,13 +126,13 @@
                 <div class="container">
                   <div class="row">
                     <div class="col">
-                     <!--  <h2>{{ student.capstone.name }}</h2>
-                      <h4>{{ student.capstone.description }}</h4>
-                      <p>URL
-                        <a :href="student.capstone.url" target="_blank">{{ student.capstone.url }}</a>
-                      </p>
-                      <router-link :to=" '/capstones/' + student.capstone.id + '/edit' " class="btn btn-warning">Edit</router-link> -->
-
+                      <div v-if="student.capstone">
+                        <h2>{{ student.capstone.name }}</h2>
+                        <h4>{{ student.capstone.description }}</h4>
+                        <p>URL:
+                          <a :href="student.capstone.url" target="_blank">{{ student.capstone.url }}</a>
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -145,6 +153,7 @@
   export default {
     data: function() {
       return {
+              student_id: "",
               student: {
                 id: "",
                 first_name: "",
@@ -188,7 +197,7 @@
                           }
                         ],
                 capstone: {
-                          id: "",
+                          // id: "",
                           name: "",
                           description: "",
                           url: ""
@@ -197,6 +206,8 @@
               };
     },
     created: function() {
+      this.student_id = localStorage.getItem("student_id");
+
           axios.get("/api/students/" + this.$route.params.id)
             .then(response => {
               console.log(response.data);
